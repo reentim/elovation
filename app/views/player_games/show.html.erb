@@ -27,16 +27,18 @@
     <h2>Recent Games</h2>
     <% @player.results.for_game(@game).limit(15).order('created_at desc').each do |result| %>
       <li>
-        <%= result.created_at.to_s(:short) %>
-        -
-        <% if result.winners.include?(@player) %>
-          <% if result.losers.empty? %>
-            Tied
+        <%= link_to game_result_path(@game, result) do %>
+          <%= result.created_at.to_s(:short) %>
+          -
+          <% if result.winners.include?(@player) %>
+            <% if result.losers.empty? %>
+              Tied
+            <% else %>
+              Beat <%= result.losers.map(&:name).join(", ") %>
+            <% end %>
           <% else %>
-            Beat <%= result.losers.map(&:name).join(", ") %>
+            Lost to <%= result.winners.map(&:name).join(", ") %>
           <% end %>
-        <% else %>
-          Lost to <%= result.winners.map(&:name).join(", ") %>
         <% end %>
         <% if result.most_recent? -%>
           <%= link_to "Delete", game_result_path(@game, result), :class => "btn btn-danger", :method => :delete, :confirm => "Are you sure?" %>

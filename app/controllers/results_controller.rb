@@ -1,6 +1,10 @@
 class ResultsController < ApplicationController
   before_filter :_find_game
 
+  def show
+    @result = Result.find(params[:id])
+  end
+
   def create
     response = ResultService.create(@game, params[:result])
 
