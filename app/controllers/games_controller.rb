@@ -7,7 +7,8 @@ class GamesController < ApplicationController
                             :max_number_of_teams,
                             :min_number_of_players_per_team,
                             :max_number_of_players_per_team,
-                            :allow_ties ]
+                            :allow_ties,
+                            :record_scores ]
 
   before_filter :_find_game, :only => [:destroy, :edit, :show, :update]
 
@@ -33,7 +34,8 @@ class GamesController < ApplicationController
     @game = Game.new min_number_of_players_per_team: 1,
                      rating_type: "trueskill",
                      min_number_of_teams: 2,
-                     allow_ties: true
+                     allow_ties: true,
+                     record_scores: false
   end
 
   def show

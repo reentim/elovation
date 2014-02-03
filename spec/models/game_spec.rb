@@ -239,6 +239,27 @@ describe Game do
       end
     end
 
+    context "record_scores" do
+      it "can be true" do
+        game = FactoryGirl.build(:game, record_scores: true)
+
+        game.should be_valid
+      end
+
+      it "can be false" do
+        game = FactoryGirl.build(:game, record_scores: false)
+
+        game.should be_valid
+      end
+
+      it "cannot be nil" do
+        game = FactoryGirl.build(:game, record_scores: nil)
+
+        game.should_not be_valid
+        game.errors[:record_scores].should == ["must be selected"]
+      end
+    end
+
     context "rating_type" do
       it "must be present" do
         game = FactoryGirl.build(:game, :rating_type => nil)
