@@ -20,6 +20,28 @@ describe ResultsController do
   end
 
   describe "create" do
+    context "a scored game" do
+      it "creates a new result with the given players, and team scores" do
+        game = FactoryGirl.create(:game, :results => [], record_scores: true)
+        player_1 = FactoryGirl.create(:player)
+        player_2 = FactoryGirl.create(:player)
+
+        post :create, :game_id => game, :result => {
+          :teams => {
+            "0" => { players: [player_1.id.to_s], score: 21 },
+            "1" => { players: [player_2.id.to_s], score: 5 }
+          }
+        }
+
+        result = game.reload.results.first
+
+        result.should_not be_nil
+        result.winners.should == [player_1]
+        result.losers.should == [player_2]
+        result.score.should == [21, 5]
+      end
+    end
+
     context "with valid params" do
       it "creates a new result with the given players" do
         game = FactoryGirl.create(:game, :results => [])

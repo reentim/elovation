@@ -105,6 +105,21 @@ describe Result do
     end
   end
 
+  describe "score" do
+    it "is an orderd array of teams' scores" do
+      player1 = FactoryGirl.create(:player)
+      player2 = FactoryGirl.create(:player)
+
+      game = FactoryGirl.create(:game, record_scores: false)
+
+      result = Result.new game: game
+      result.teams.build rank: 1, players: [player1], score: 21
+      result.teams.build rank: 2, players: [player2], score: 19
+
+      result.score.should == [21, 19]
+    end
+  end
+
   describe "validations" do
     context "team validations" do
       it "requires a winner" do
@@ -191,6 +206,34 @@ describe Result do
         result.teams.build rank: 4, players: [player6]
 
         result.should be_valid
+      end
+
+      it "cannot have scores if not recorded by the game" do
+        player1 = FactoryGirl.create(:player)
+        player2 = FactoryGirl.create(:player)
+
+        game = FactoryGirl.create(:game, record_scores: false)
+
+        result = Result.new game: game
+        result.teams.build rank: 1, players: [player1], score: 5
+        result.teams.build rank: 2, players: [player2], score: 4
+
+        result.should_not be_valid
+        result.errors[:game].should == ["does not record scores"]
+      end
+
+      it "must have scores if recorded by the game" do
+        player1 = FactoryGirl.create(:player)
+        player2 = FactoryGirl.create(:player)
+
+        game = FactoryGirl.create(:game, record_scores: true)
+
+        result = Result.new game: game
+        result.teams.build rank: 1, players: [player1]
+        result.teams.build rank: 2, players: [player2]
+
+        result.should_not be_valid
+        result.errors[:game].should == ["requires scores be recorded"]
       end
 
       it "cannot have ties if not allowed by the game" do

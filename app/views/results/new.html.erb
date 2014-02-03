@@ -1,17 +1,33 @@
-<%= form_for [@game, @result], :html => {:class => "well form-horizontal"} do |f| %>
+<%= form_for [@game, @result], :html => {:class => "well form-inline"} do |f| %>
   <%= f.error_messages %>
 
   <% @result.teams.each.with_index do |team, index| %>
-    <%= select "result[teams][#{index}]", "players", player_options, {:include_blank => ''}, :class => "players span4", :multiple => @game.max_number_of_players_per_team != 1, "data-placeholder" => "Team #{index + 1}" %>
-    <% if index != @result.teams.size - 1 %>
-      <br />
-      <%= select "result[teams][#{index}]", :relation, ["defeats", "ties"], {}, :class => "span2" %>
+    <br />
+    <%= select "result[teams][#{index}]",
+      "players",
+        player_options,
+        {:include_blank => ''},
+        :class => "players span5",
+        :multiple => @game.max_number_of_players_per_team != 1,
+        "data-placeholder" => "Team #{index + 1}" %>
+    <br />
+    <% if @game.record_scores %>
+      <%= f.label :score %>:
+      <%= number_field_tag "result[teams][#{index}]score", class: "players input-small" %>
     <% end %>
+    <% if index != @result.teams.size - 1 %>
+      <%= select "result[teams][#{index}]",
+        :relation,
+          ["defeats",
+           "ties"],
+           {},
+           :class => "input-small" %>
+    <% end %>
+    <br />
   <% end %>
 
-  <p>
-    <%= f.submit :class => "btn btn-primary" %>
-  </p>
+  <br />
+  <%= f.submit :class => "btn btn-primary" %>
 <% end %>
 
 <%= javascript_tag do %>

@@ -34,6 +34,14 @@ class Result < ActiveRecord::Base
     if !result.game.allow_ties && result.teams.map(&:rank).uniq.size != result.teams.size
       result.errors.add(:teams, "game does not allow ties")
     end
+
+    if !result.game.record_scores && result.teams.map(&:score).any?
+      result.errors.add(:game, "does not record scores")
+    end
+
+    if result.game.record_scores && result.teams.map(&:score).any?(&:nil?)
+      result.errors.add(:game, "requires scores be recorded")
+    end
   end
 
   def players
@@ -46,6 +54,10 @@ class Result < ActiveRecord::Base
 
   def losers
     teams.select{|team| team.rank != Team::FIRST_PLACE_RANK}.map(&:players).flatten
+  end
+
+  def score
+    teams.sort { |a, b| a.rank <=> b.rank }.map(&:score)
   end
 
   def as_json(options = {})
