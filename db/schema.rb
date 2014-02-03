@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20140202132709) do
     t.integer  "result_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "score"
   end
 
 end
