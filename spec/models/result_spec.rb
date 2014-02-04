@@ -222,7 +222,7 @@ describe Result do
         result.errors[:game].should == ["does not record scores"]
       end
 
-      it "must have scores if recorded by the game" do
+      it "scores are not required" do
         player1 = FactoryGirl.create(:player)
         player2 = FactoryGirl.create(:player)
 
@@ -232,8 +232,7 @@ describe Result do
         result.teams.build rank: 1, players: [player1]
         result.teams.build rank: 2, players: [player2]
 
-        result.should_not be_valid
-        result.errors[:game].should == ["requires scores be recorded"]
+        result.should be_valid
       end
 
       it "cannot have ties if not allowed by the game" do

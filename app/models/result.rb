@@ -38,10 +38,6 @@ class Result < ActiveRecord::Base
     if !result.game.record_scores && result.teams.map(&:score).any?
       result.errors.add(:game, "does not record scores")
     end
-
-    if result.game.record_scores && result.teams.map(&:score).any?(&:nil?)
-      result.errors.add(:game, "requires scores be recorded")
-    end
   end
 
   def players

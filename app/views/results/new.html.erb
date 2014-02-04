@@ -13,7 +13,7 @@
     <br />
     <% if @game.record_scores %>
       <%= f.label :score %>:
-      <%= number_field_tag "result[teams][#{index}]score", class: "players input-small" %>
+      <%= number_field_tag "result[teams][#{index}]score", class: "players input-small" %> (optional)
     <% end %>
     <% if index != @result.teams.size - 1 %>
       <%= select "result[teams][#{index}]",
