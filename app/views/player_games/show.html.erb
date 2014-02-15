@@ -1,4 +1,4 @@
-<div class="hero-unit">
+<div class="header">
   <h1><%= @player.name %> - <%= @game.name %> (<%= @player.ratings.find_by_game_id(@game).value %>)</h1>
 </div>
 
@@ -41,7 +41,7 @@
           <% end %>
         <% end %>
         <% if result.most_recent? -%>
-          <%= link_to "Delete", game_result_path(@game, result), :class => "btn btn-danger", :method => :delete, :confirm => "Are you sure?" %>
+          <%= link_to "Delete", game_result_path(@game, result), :class => "pure-button button-danger", :method => :delete, :confirm => "Are you sure?" %>
         <% end -%>
       </li>
     <% end %>
