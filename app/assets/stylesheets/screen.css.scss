@@ -1,29 +1,21 @@
-.sidebar-nav {
-  padding: 9px 0;
+html, button, input, select, textarea,
+.pure-g [class *= "pure-u"],
+.pure-g-r [class *= "pure-u"]
+{
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
-.btn-sidebar {
-  margin-left: 1em;
+body
+{
+  color: #444;
 }
 
-section.action-buttons {
-  margin-top: 1em;
+h1
+{
+  display: inline-block;
 }
 
-span.defeats {
-  margin-left: 1em;
-  margin-right: 1em;
-}
-
-span.inline-submit {
-  margin-left: 1em;
-}
-
-div.description {
-  margin-left: 5em;
-  margin-top: 1em;
-}
-
-.gray {
-  color: darkgray;
+.pure-button .fa
+{
+  padding-left: 3px;
 }
