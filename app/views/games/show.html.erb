@@ -23,8 +23,17 @@
 <% end %>
 
   <h2>Active Ratings</h2>
-  <ol>
+  <table class="pure-table rating-table">
+    <thead>
+      <tr>
+        <td>Rank</td>
+        <td>Player</td>
+        <td>Rating</td>
+        <td>W</td>
+        <td>L</td>
+      </tr>
+    </thead>
     <%= render :partial => 'rating', :collection => @game.all_ratings.select(&:active?) %>
-  </ol>
+  </table>
   <%= link_to "View All", game_ratings_path(@game) %>
 </div>

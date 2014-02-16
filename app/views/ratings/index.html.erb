@@ -5,8 +5,17 @@
 <div>
   <div>
     <h2>All Ratings</h2>
-    <ol>
+    <table class="pure-table rating-table">
+      <thead>
+        <tr>
+          <td>Rank</td>
+          <td>Player</td>
+          <td>Rating</td>
+          <td>W</td>
+          <td>L</td>
+        </tr>
+      </thead>
       <%= render :partial => 'games/rating', :collection => @game.all_ratings %>
-    </ol>
+    </table>
   </div>
 </div>
