@@ -1,7 +1,9 @@
 <% result_class = result.losers.include?(options[:pov_player]) ? "loss" : "win" %>
 <tr class="<%= result_class %>">
   <td class="result-winner">
-    <%= image_tag(gravatar_url(result.winners.first, :size => 128), class: 'avatar') %>
+    <span class="pure-hidden-phone">
+      <%= image_tag(gravatar_url(result.winners.first, :size => 128), class: 'avatar') %>
+    </span>
     <div class="result-player-details">
       <span class="player-name">
         Team <%= result.winners.first.last_name %>
@@ -23,7 +25,9 @@
     </div>
   </td>
   <td class="result-loser">
-    <%= image_tag(gravatar_url(result.losers.first, :size => 128), class: 'avatar') %>
+    <span class="pure-hidden-phone">
+      <%= image_tag(gravatar_url(result.losers.first, :size => 128), class: 'avatar') %>
+    </span>
     <div class="result-player-details">
       <span class="player-name">
         Team <%= result.losers.first.last_name %>
