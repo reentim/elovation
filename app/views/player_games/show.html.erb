@@ -8,22 +8,45 @@
 <div>
   <div>
     <h2>Head-to-Head Records</h2>
-    <ol>
-      <% @game.all_ratings.each do |rating| %>
-        <% opponent = rating.player %>
-        <% wins = @player.results.wins.for_game(@game).against(opponent).size %>
-        <% losses = @player.results.losses.for_game(@game).against(opponent).size %>
-        <li class="<%= "gray" if @player != opponent and wins == 0 and losses == 0 %>" >
-          <%= opponent.name %>
-          <span class="pull-right">
-          <% unless opponent == @player %>
-            (<%= rating.value %>)
-            (<%= wins %> - <%= losses %>)
-          <% end %>
-          </span>
-        </li>
-      <% end %>
-    </ol>
+    <table class="pure-table rating-table">
+      <thead>
+        <tr>
+          <td>Rank</td>
+          <td>Player</td>
+          <td>Rating</td>
+          <td>W</td>
+          <td>L</td>
+        </tr>
+      </thead>
+        <% @game.all_ratings.each_with_index do |rating, i| %>
+          <% opponent = rating.player %>
+          <% wins = @player.results.wins.for_game(@game).against(opponent).size %>
+          <% losses = @player.results.losses.for_game(@game).against(opponent).size %>
+          <tr class="<%= "gray" if @player != opponent and wins == 0 and losses == 0 %>" >
+            <td><%= (i + 1).ordinalize %></td>
+            <td><%= opponent.name %></td>
+            <td>
+              <%= rating.value %>
+            </td>
+            <% if opponent == @player %>
+              <td>
+                &mdash;
+              </td>
+              <td>
+                &mdash;
+              </td>
+            <% else %>
+              <td>
+                <%= wins %>
+              </td>
+              <td>
+                <%= losses %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tr>
+    </table>
   </div>
 
   <div>
