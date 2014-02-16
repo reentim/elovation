@@ -10,7 +10,7 @@ body
   color: #555;
 }
 
-p, .rating-table td, ol, .help-inline
+p, .rating-table td, .player-name, ol, .help-inline
 {
   a
   {
@@ -282,4 +282,9 @@ h2
 {
   opacity: 0.5;
   background: whitesmoke;
+}
+
+.self
+{
+  background-color: rgb(250, 249, 231);
 }

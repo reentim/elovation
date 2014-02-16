@@ -22,9 +22,13 @@
           <% opponent = rating.player %>
           <% wins = @player.results.wins.for_game(@game).against(opponent).size %>
           <% losses = @player.results.losses.for_game(@game).against(opponent).size %>
-          <tr class="<%= "gray" if @player != opponent and wins == 0 and losses == 0 %>" >
+          <tr class="<%= "gray" if @player != opponent and wins == 0 and losses == 0 %> <%= 'self' if opponent == @player %>" >
             <td><%= (i + 1).ordinalize %></td>
-            <td><%= opponent.name %></td>
+            <td>
+              <%= link_to player_game_path(opponent, @game) do %>
+                <%= opponent.name %>
+              <% end %>
+            </td>
             <td>
               <%= rating.value %>
             </td>
