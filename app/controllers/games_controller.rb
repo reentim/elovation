@@ -12,6 +12,10 @@ class GamesController < ApplicationController
 
   before_filter :_find_game, :only => [:destroy, :edit, :show, :update]
 
+  def index
+    redirect_to Game.first
+  end
+
   def create
     @game = Game.new(clean_params[:game])
 

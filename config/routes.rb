@@ -56,7 +56,7 @@ Elovation::Application.routes.draw do
   end
 
   match '/dashboard' => 'dashboard#show', :as => :dashboard
-  root :to => 'dashboard#show'
+  root :to => 'games#index'
 
   # See how all your routes lay out with "rake routes"
 
