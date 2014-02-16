@@ -1,3 +1,9 @@
-<table class="table table-striped">
-  <%= render :partial => 'shared/result', :object => @result %>
+<div class="header">
+  <h1>
+    <%= @game.name %>
+  </h1>
+</div>
+<h2>Result</h2>
+<table class="pure-table results-table">
+  <%= render :partial => 'shared/result', :object => @result, locals: { options: {} } %>
 </table>

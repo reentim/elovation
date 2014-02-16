@@ -10,7 +10,7 @@ body
   color: #555;
 }
 
-p, td, ol, .help-inline
+p, .rating-table td, ol, .help-inline
 {
   a
   {
@@ -52,7 +52,7 @@ h2
 
   tr
   {
-    border-bottom: 1px solid silver;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
 
   td

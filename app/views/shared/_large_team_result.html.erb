@@ -36,15 +36,15 @@
       <% end %>
     </div>
   </td>
-  <td class="pure-hidden-phone">
+  <td class="pure-hidden-phone extra-actions">
     <p>
       <% if options[:specify_league] %>
         in
         <strong><%= result.game.name %></strong>
       <% end %>
-      <% if result.most_recent? -%>
-        <%= link_to "Delete", game_result_path(result.game, result), :class => "pure-button button-danger delete-button", :method => :delete, :confirm => "Are you sure?" %>
-      <% end -%>
     </p>
+    <% if result.most_recent? -%>
+      <%= link_to "Delete", game_result_path(result.game, result), :class => "pure-button button-danger delete-button", :method => :delete, :confirm => "Are you sure?" %>
+    <% end -%>
   </td>
 </tr>
