@@ -10,6 +10,25 @@ body
   color: #555;
 }
 
+p, td, ol, .help-inline
+{
+  a
+  {
+    color: #3b8bba;
+    text-decoration: none;
+
+    &:hover
+    {
+      text-decoration: underline;
+    }
+
+    &:visited
+    {
+      color: #265778;
+    }
+  }
+}
+
 h1
 {
   display: inline-block;
@@ -52,6 +71,7 @@ h2
   {
     margin-right: 5px;
     margin-bottom: 5px;
+    margin-left: 5px;
     float: left;
     width: 48px;
     height: 48px;
@@ -81,9 +101,9 @@ h2
       {
         width: 58px;
         height: 58px;
-        -webkit-clip-path: polygon(68px 80px, 80px 4px, 0 45px, 0 80px);
+        -webkit-clip-path: polygon(68px 80px, 80px -8px, 0 32px, 0 80px);
         position: absolute;
-        top: -5px;
+        top: 5px;
         left: -5px;
       }
     }
@@ -149,6 +169,13 @@ h2
 
 .rating-table
 {
+  width: 100%;
+
+  td
+  {
+    padding: 8px;
+  }
+
   thead
   {
     font-size: 13px;
@@ -161,18 +188,80 @@ h2
     a
     {
       vertical-align: top;
-      color: #3b8bba;
-      text-decoration: none;
-
-      &:hover
-      {
-        text-decoration: underline;
-      }
-
-      &:visited
-      {
-        color: #265778;
-      }
     }
   }
+
+  .avatar
+  {
+    width: 32px;
+  }
+}
+
+.win
+{
+}
+
+.loss
+{
+  opacity: 0.5;
+  background: gainsboro;
+}
+
+.control-group
+{
+  margin-bottom: 1em;
+}
+
+.help-inline
+{
+  font-size: 13px;
+  color: #777;
+}
+
+.pure-controls
+{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.chzn-choices
+{
+  padding: 5px;
+}
+
+.search-field
+{
+  input
+  {
+    font-family: 'Source Sans Pro' !important;
+    font-size: 15px !important;
+    height: 25px !important;
+    width: 100% !important;
+  }
+}
+
+.result-form
+{
+  margin-top: 1em;
+
+  .result-selector
+  {
+    margin: 1em 0 1.5em;
+  }
+}
+
+.result-buttons
+{
+  margin-top: 1em;
+}
+
+.avatar
+{
+  width: 128px;
+}
+
+.delete-button
+{
+  margin-right: 5px;
+  float: right;
 }

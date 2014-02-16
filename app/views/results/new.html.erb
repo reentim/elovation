@@ -2,36 +2,45 @@
   <h1>Add Result</h1>
 </div>
 
-<%= form_for [@game, @result], :html => {:class => "well form-inline"} do |f| %>
+<%= form_for [@game, @result], :html => {:class => "pure-form result-form"} do |f| %>
   <%= f.error_messages %>
 
-  <% @result.teams.each.with_index do |team, index| %>
-    <br />
-    <%= select "result[teams][#{index}]",
-      "players",
-        player_options,
-        {:include_blank => ''},
-        :class => "players span5",
-        :multiple => @game.max_number_of_players_per_team != 1,
-        "data-placeholder" => "Team #{index + 1}" %>
-    <br />
-    <% if @game.record_scores %>
-      <%= f.label :score %>:
-      <%= number_field_tag "result[teams][#{index}]score", class: "players input-small" %> (optional)
-    <% end %>
-    <% if index != @result.teams.size - 1 %>
-      <%= select "result[teams][#{index}]",
-        :relation,
-          ["defeats",
-           "ties"],
-           {},
-           :class => "input-small" %>
-    <% end %>
-    <br />
-  <% end %>
+  <div class="pure-g-r">
+    <% @result.teams.each.with_index do |team, index| %>
+      <div class="pure-u-2-5">
 
-  <br />
-  <%= f.submit :class => "pure-button pure-button-primary" %>
+        <div class="pure-g-r">
+          <div class="pure-u-1">
+            <%= select "result[teams][#{index}]", "players", player_options, {:include_blank => ''}, :class => "players span5", :multiple => @game.max_number_of_players_per_team != 1, "data-placeholder" => "Team #{index + 1}" %>
+          </div>
+        </div>
+
+        <% if @game.record_scores %>
+          <label for="score">
+            Score <span class="help-inline">(optional)</span>
+            <div class="pure-controls">
+              <%= phone_field_tag "result[teams][#{index}]score" %>
+
+            </div>
+          </label>
+        <% end %>
+
+        <% if index != @result.teams.size - 1 %>
+          </div>
+          <div class="pure-u-1-5 result-selector">
+            <div class="pure-controls">
+              <%= select "result[teams][#{index}]", :relation, ["defeats", "ties"], {}, :class => "input-small" %>
+            </div>
+          </div>
+        <% end %>
+    <% end %>
+  </div>
+
+  <div class="pure-g-r result-buttons">
+    <div class="pure-u-1">
+      <%= f.submit :class => "pure-button pure-button-primary" %>
+    </div>
+  </div>
 <% end %>
 
 <%= javascript_tag do %>

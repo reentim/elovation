@@ -1,4 +1,5 @@
-<tr>
+<% result_class = result.losers.include?(options[:pov_player]) ? "loss" : "win" %>
+<tr class="<%= result_class %>">
   <td class="result-winner">
     <div class="doubles-avatars">
       <% result.winners.each do |winner| %>
@@ -49,7 +50,7 @@
         in
         <strong><%= result.game.name %></strong>
         <% if result.most_recent? -%>
-          <%= link_to "Delete", game_result_path(result.game, result), :class => "pure-button button-danger", :method => :delete, :confirm => "Are you sure?" %>
+          <%= link_to "Delete", game_result_path(result.game, result), :class => "pure-button button-danger delete-button", :method => :delete, :confirm => "Are you sure?" %>
         <% end -%>
     </p>
     </td>

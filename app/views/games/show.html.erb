@@ -35,5 +35,7 @@
     </thead>
     <%= render :partial => 'rating', :collection => @game.all_ratings.select(&:active?) %>
   </table>
-  <%= link_to "View All", game_ratings_path(@game) %>
+  <p>
+    <%= link_to "View All", game_ratings_path(@game) %>
+  </p>
 </div>

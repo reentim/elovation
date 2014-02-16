@@ -8,11 +8,11 @@ module ApplicationHelper
 
   def time_ago_in_words_short(time)
     time_ago_in_words(time)
+      .gsub(/less than a minute/, "now")
       .gsub(/ minute(s?)/, "m")
       .gsub(/ hour(s?)/, "h")
       .gsub(/ day(s?)/, "d")
       .gsub(/ year(s?)/, "y")
-      .gsub(/less than a/, "")
       .gsub(/about/, "")
   end
 end

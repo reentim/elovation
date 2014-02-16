@@ -3,8 +3,11 @@
     <%= (rating_counter + 1).ordinalize %>
   </td>
   <td class="player">
-    <%= image_tag(gravatar_url(rating.player, :size => 32)) %>
-    <%= link_to rating.player.name, player_game_path(rating.player, @game) %>
+    <%= image_tag(gravatar_url(rating.player, :size => 64), class: 'avatar') %>
+    <%= link_to player_game_path(rating.player, @game) do %>
+      <%= rating.player.first_name %>
+      <%= rating.player.last_name[0] %>
+    <% end %>
   </td>
   <td>
     <%= rating.value %>

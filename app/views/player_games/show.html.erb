@@ -1,8 +1,11 @@
 <div class="header">
-  <h1><%= @player.name %> - <%= @game.name %> (<%= @player.ratings.find_by_game_id(@game).value %>)</h1>
+  <h1><%= @player.name %></h1>
+  <h2>
+    <%= @game.name %> rating: <%= @player.ratings.find_by_game_id(@game).value %>
+  </h2>
 </div>
 
-<div class="row">
+<div>
   <div>
     <h2>Head-to-Head Records</h2>
     <ol>
@@ -23,27 +26,9 @@
     </ol>
   </div>
 
-  <div class="span4 offset1">
-    <h2>Recent Games</h2>
-    <% @player.results.for_game(@game).limit(15).order('created_at desc').each do |result| %>
-      <li>
-        <%= link_to game_result_path(@game, result) do %>
-          <%= result.created_at.to_s(:short) %>
-          -
-          <% if result.winners.include?(@player) %>
-            <% if result.losers.empty? %>
-              Tied
-            <% else %>
-              Beat <%= result.losers.map(&:name).join(", ") %>
-            <% end %>
-          <% else %>
-            Lost to <%= result.winners.map(&:name).join(", ") %>
-          <% end %>
-        <% end %>
-        <% if result.most_recent? -%>
-          <%= link_to "Delete", game_result_path(@game, result), :class => "pure-button button-danger", :method => :delete, :confirm => "Are you sure?" %>
-        <% end -%>
-      </li>
-    <% end %>
+  <div>
+    <h2>Recent Results</h2>
+    <% player_recent_results = @player.results.for_game(@game).limit(15).order('created_at desc') %>
+    <%= render :partial => 'shared/results', :object => player_recent_results, locals: { options: { pov_player: @player } } %>
   </div>
 </div>
