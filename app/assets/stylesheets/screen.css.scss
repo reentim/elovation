@@ -7,7 +7,7 @@ html, button, input, select, textarea,
 
 body
 {
-  color: #444;
+  color: #555;
 }
 
 h1
@@ -18,4 +18,131 @@ h1
 .pure-button .fa
 {
   padding-left: 3px;
+}
+
+h2
+{
+  font-weight: 300;
+  color: #888;
+}
+
+.results-table
+{
+  width: 100%;
+  border: none;
+
+  tr
+  {
+    border-bottom: 1px solid silver;
+  }
+
+  td
+  {
+    border: none;
+    vertical-align: top;
+    padding: 0;
+  }
+
+  .result-player-details
+  {
+    float: left;
+  }
+
+  .avatar, .doubles-avatars
+  {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    float: left;
+    width: 48px;
+    height: 48px;
+  }
+
+  .doubles-avatars
+  {
+    width: 48px;
+    height: 48px;
+    position: relative;
+    overflow: hidden;
+
+    img
+    {
+      float: none !important;
+
+      &:first-child
+      {
+        width: 63px;
+        height: 63px;
+        -webkit-clip-path: polygon(0 0, 0 58px, 80px 18px, 80px 0);
+        margin-top: -15px;
+        margin-left: -15px;
+      }
+
+      &:last-child
+      {
+        width: 58px;
+        height: 58px;
+        -webkit-clip-path: polygon(68px 80px, 80px 4px, 0 45px, 0 80px);
+        position: absolute;
+        top: -5px;
+        left: -5px;
+      }
+    }
+  }
+
+  .result-result
+  {
+    text-align: center;
+    padding: 0;
+    vertical-align: middle;
+    width: 1%;
+    white-space: nowrap;
+  }
+
+  .result-winner
+  {
+    width: 43.5%;
+    padding: 5px 5px 0 0;
+  }
+
+  .result-loser
+  {
+    padding: 5px 0 0 30px;
+  }
+}
+
+.defeated
+{
+  font-size: 25px;
+  font-weight: 300;
+}
+
+.result-time
+{
+  font-size: 12px;
+}
+
+.team-score
+{
+  font-size: 25px;
+  font-weight: 300;
+}
+
+.header .avatar
+{
+  margin-bottom: 1em;
+}
+
+.competition-losers
+{
+  .result-player-details
+  {
+    font-size: 13px;
+  }
+}
+
+.competition-last-place
+{
+  border-top: 1px solid gainsboro;
+  padding: 5px 0 5px 0;
+  margin-top: 5px;
 }

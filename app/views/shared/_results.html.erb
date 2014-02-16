@@ -1,3 +1,3 @@
-<table class="table table-striped">
-  <%= render :partial => 'shared/result', :collection => results %>
+<table class="pure-table results-table">
+  <%= render :partial => 'shared/result', :collection => results, locals: { options: options } %>
 </table>

@@ -1,33 +1,30 @@
 <div class="header">
-  <h1><%= @game.name %></h1>
-  <%= link_to edit_game_path(@game), :class => "pure-button button-transparent" do %>
-    <i class="fa fa-cog"></i>
-  <% end %>
+  <h1>
+    <%= @game.name %>
+  </h1>
   <section>
-    <span>
-      <%= link_to new_game_result_path(@game), :class => "pure-button button-success" do %>
-        Add Result <i class="fa fa-plus-square-o"></i>
-      <% end %>
-    </span>
+    <%= link_to new_game_result_path(@game), :class => "pure-button button-success" do %>
+      Add Result <i class="fa fa-plus-square-o"></i>
+    <% end %>
+    <%= link_to edit_game_path(@game), :class => "pure-button" do %>
+      Game Settings <i class="fa fa-cog"></i>
+    <% end %>
     <% if @game.results.empty? %>
       <span><%= link_to "Delete", game_path(@game), :method => :delete, :confirm => "Are you sure?", :class => "pure-button button-danger" %></span>
   <% end %>
   </section>
 </div>
-<div class="row-fluid">
-  <div class="span8">
-    <h2>Recent Results</h2>
-    <% if @game.recent_results.any? %>
-      <%= render :partial => 'shared/results', :object => @game.recent_results %>
-    <% else %>
-      <span>No results, play some games!</span>
-    <% end %>
-  </div>
-  <div class="span4">
-    <h2>Active Ratings</h2>
-    <ol>
-      <%= render :partial => 'rating', :collection => @game.all_ratings.select(&:active?) %>
-    </ol>
-    <%= link_to "View All", game_ratings_path(@game) %>
-  </div>
+<div>
+  <h2>Recent Results</h2>
+  <% if @game.recent_results.any? %>
+    <%= render :partial => 'shared/results', :object => @game.recent_results, locals: { options: {} } %>
+<% else %>
+    <span>No results, play some games!</span>
+<% end %>
+
+  <h2>Active Ratings</h2>
+  <ol>
+    <%= render :partial => 'rating', :collection => @game.all_ratings.select(&:active?) %>
+  </ol>
+  <%= link_to "View All", game_ratings_path(@game) %>
 </div>

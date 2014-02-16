@@ -1,24 +1,28 @@
 <div class="header">
   <h1><%= @player.name %></h1>
-  <div><%= image_tag(gravatar_url(@player, :size => 80)) %></div>
+  <div><%= image_tag(gravatar_url(@player, :size => 80), class: 'avatar') %></div>
   <section class="action-buttons">
-    <span><%= link_to 'Edit Player', edit_player_path(@player), :class => "pure-button pure-button-primary" %></span>
+    <span>
+      <%= link_to edit_player_path(@player), :class => "pure-button pure-button-primary" do %>
+        Edit Details
+      <% end %>
+    </span>
     <% if @player.results.empty? %>
       <span><%= link_to "Delete", player_path(@player), :method => :delete, :confirm => "Are you sure?", :class => "pure-button button-danger" %></span>
     <% end %>
   </section>
 </div>
 
-<div class="row-fluid">
-  <div class="span8">
+<div>
+  <div>
     <h2>Recent Results</h2>
     <% if @player.recent_results.any? %>
-      <%= render :partial => 'shared/results', :object => @player.recent_results %>
+      <%= render :partial => 'shared/results', :object => @player.recent_results, locals: { options: { specify_league: true } } %>
     <% else %>
       <span>No results, play some games!</span>
     <% end %>
   </div>
-  <div class="span4">
+  <div>
     <h2>Ratings</h2>
     <ol>
       <%= render :partial => 'rating', :collection => @player.ratings %>

@@ -1,31 +1,12 @@
-<tr>
-  <td>
-    <%= link_to "∞", game_result_path(result.game, result) %>
-    <%= result.created_at.to_s(:short) %>
-  </td>
-  <td>
-    <ul>
-      <% result.teams.each do |team| %>
-        <li>
-          <%= team.rank.ordinalize %>:
-          <% team.players.each do |winner| %>
-            <%= image_tag(gravatar_url(winner, :size => 24)) %>
-            <strong><%= winner.name %></strong>
-            <% if team.score %>
-              <span>score: <%= team.score %></span>
-            <% end %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  </td>
-  <td>
-    <p>
-      in
-      <strong><%= result.game.name %></strong>
-      <% if result.most_recent? -%>
-        <%= link_to "Delete", game_result_path(result.game, result), :class => "pure-button button-danger", :method => :delete, :confirm => "Are you sure?" %>
-      <% end -%>
-  </p>
-  </td>
-</tr>
+<%# <% link_to game_result_path(result.game, result) do %1> %>
+<%# <% end %1> %>
+
+<% if result.teams.count > 2 && result.winners.count == 1 %>
+  <%= render :partial => 'shared/competition_result', locals: { result: result, options: options } %>
+<% elsif result.players.count == 2 %>
+  <%= render :partial => 'shared/singles_result', locals: { result: result, options: options } %>
+<% elsif result.players.count > 4 || result.teams.map { |t| t.players.count  }.any? { |s| s > 2  } %>
+  <%= render :partial => 'shared/large_team_result', locals: { result: result, options: options } %>
+<% elsif result.players.count == 4 %>
+  <%= render :partial => 'shared/doubles_result', locals: { result: result, options: options } %>
+<% end %>

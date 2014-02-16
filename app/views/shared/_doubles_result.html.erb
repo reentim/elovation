@@ -1,0 +1,58 @@
+<tr>
+  <td class="result-winner">
+    <div class="doubles-avatars">
+      <% result.winners.each do |winner| %>
+        <%= image_tag(gravatar_url(winner, :size => 128), class: 'avatar') %>
+      <% end %>
+    </div>
+    <div class="result-player-details">
+      <span class="player-name">
+        <%= result.winners.map(&:first_name).join(" / ") %>
+      </span>
+      <br />
+      <% if result.teams.first.score %>
+        <span class="team-score">
+          <%= result.teams.first.score %>
+        </span>
+      <% end %>
+    </div>
+  </td>
+  <td class="result-result">
+    <div class="defeated">
+      D
+    </div>
+    <div class="result-time">
+      <%= time_ago_in_words_short(result.created_at) %>
+    </div>
+  </td>
+  <td class="result-loser">
+    <div class="doubles-avatars">
+      <% result.losers.each do |loser| %>
+          <%= image_tag(gravatar_url(loser, :size => 128), class: 'avatar') %>
+      <% end %>
+    </div>
+    <div class="result-player-details">
+      <span class="player-name">
+        <%= result.losers.map(&:first_name).join(" / ") %>
+      </span>
+      <br />
+      <% if result.teams.last.score %>
+        <span class="team-score">
+          <%= result.teams.last.score %>
+        </span>
+      <% end %>
+    </div>
+  </td>
+  <% if options[:specify_league] %>
+    <td>
+      <p>
+        in
+        <strong><%= result.game.name %></strong>
+        <% if result.most_recent? -%>
+          <%= link_to "Delete", game_result_path(result.game, result), :class => "pure-button button-danger", :method => :delete, :confirm => "Are you sure?" %>
+        <% end -%>
+    </p>
+    </td>
+  <% end %>
+</tr>
+
