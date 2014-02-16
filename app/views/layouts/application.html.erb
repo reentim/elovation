@@ -6,46 +6,51 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <link rel="SHORTCUT ICON" href="<%= image_path "favicon.png" %>" />
-   <meta name="viewport" content="width=device-width" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container-fluid">
-        <%= link_to "SitePong: table tennis leaderboard", root_path, :class => "brand" %>
+  <div id="layout">
+    <a href="#menu" id="menuLink" class="menu-link">
+      <!-- Hamburger icon -->
+      <span></span>
+    </a>
+
+    <div id="menu">
+      <div class="pure-menu pure-menu-open">
+        <a class="pure-menu-heading" href="/">SitePong</a>
+
+        <ul>
+          <li class="pure-menu-heading">
+          <span>Games</span>
+          <%= link_to new_game_path, :class => "action" do %>
+            Add <i class="fa fa-plus-square"></i>
+          <% end %>
+          </li>
+          <% Game.all.sort_by(&:name).each do |game| %>
+            <li class="<%= "active" if @game == game %>">
+          <%= link_to game.name, game_path(game) %>
+          </li>
+        <% end %>
+
+          <li class="pure-menu-heading">
+          <span>Players</span>
+          <%= link_to new_player_path, :class => "action" do %>
+            Add <i class="fa fa-plus-square"></i>
+          <% end %>
+          </li>
+          <% Player.all.sort_by(&:name).each do |player| %>
+            <li class="<%= "active" if @player == player %>">
+          <%= link_to player.name, player_path(player) %>
+          </li>
+        <% end %>
+        </ul>
       </div>
     </div>
-  </div>
 
-  <div class="container-fluid">
-    <div class="row-fluid">
-      <div class="span3">
-        <div class="well sidebar-nav">
-          <ul class="nav nav-list">
-            <li class="nav-header">
-              <span>Games</span>
-              <span><%= link_to "Add", new_game_path, :class => "btn btn-small btn-sidebar" %></span>
-            </li>
-            <% Game.all.sort_by(&:name).each do |game| %>
-              <li class="<%= "active" if @game == game %>">
-                <%= link_to game.name, game_path(game) %>
-              </li>
-            <% end %>
-            <li class="nav-header">
-              <span>Players</span>
-              <span><%= link_to "Add", new_player_path, :class => "btn btn-small btn-sidebar" %></span>
-            </li>
-            <% Player.all.sort_by(&:name).each do |player| %>
-              <li class="<%= "active" if @player == player %>">
-                <%= link_to player.name, player_path(player) %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-      <div class="span9">
-        <%= yield %>
-      </div>
+    <div class="content">
+      <%= yield %>
     </div>
   </div>
 </body>

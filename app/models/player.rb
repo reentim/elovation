@@ -45,4 +45,12 @@ class Player < ActiveRecord::Base
     rating = ratings.where(:game_id => game.id).first
     rating.rewind!
   end
+
+  def first_name
+    name.split.first
+  end
+
+  def last_name
+    name.split.last
+  end
 end

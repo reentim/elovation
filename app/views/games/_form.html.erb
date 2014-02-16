@@ -1,70 +1,66 @@
-<%= form_for @game, :html => {:class => "form-horizontal"} do |f| %>
+<%= form_for @game, :html => {:class => "pure-form"} do |f| %>
   <%= f.error_messages %>
 
   <fieldset>
-    <legend>Game</legend>
-
     <div class="control-group">
       <%= f.label :name, :class => "control-label" %>
-      <div class="controls">
+      <div class="pure-controls">
         <%= f.text_field :name, :class => "input-xlarge" %>
       </div>
     </div>
 
     <div class="control-group">
       <%= f.label :rating_type, :class => "control-label" %>
-      <div class="controls">
+      <div class="pure-controls">
         <%= f.select :rating_type, Game::RATER_MAPPINGS.map{|k, v| [v.description, k]}, {}, :class => "input-xlarge" %>
       </div>
     </div>
 
     <div class="control-group">
       <%= f.label :min_number_of_players_per_team, :class => "control-label" %>
-      <div class="controls">
+      <div class="pure-controls">
         <%= f.text_field :min_number_of_players_per_team, :class => "input-mini" %>
       </div>
     </div>
 
     <div class="control-group">
       <%= f.label :max_number_of_players_per_team, :class => "control-label" %>
-      <div class="controls">
+      <span class="help-inline">Leave blank for no restriction</span>
+      <div class="pure-controls">
         <%= f.text_field :max_number_of_players_per_team, :class => "input-mini" %>
-        <span class="help-inline">Leave blank for no restriction</span>
       </div>
     </div>
 
     <div class="control-group">
       <%= f.label :min_number_of_teams, :class => "control-label" %>
-      <div class="controls">
+      <div class="pure-controls">
         <%= f.text_field :min_number_of_teams, :class => "input-mini" %>
       </div>
     </div>
 
     <div class="control-group">
       <%= f.label :max_number_of_teams, :class => "control-label" %>
-      <div class="controls">
+      <span class="help-inline">Leave blank for no restriction</span>
+      <div class="pure-controls">
         <%= f.text_field :max_number_of_teams, :class => "input-mini" %>
-        <span class="help-inline">Leave blank for no restriction</span>
       </div>
     </div>
 
     <div class="control-group">
-      <%= f.label :allow_ties, :class => "control-label" %>
-      <div class="controls">
-        <%= f.check_box :allow_ties, :class => "input-mini" %>
-      </div>
+      <label>
+      <%= f.check_box :allow_ties, :class => "input-mini" %> Allow ties
+      </label>
     </div>
 
     <div class="control-group">
-      <%= f.label :record_scores, :class => "control-label" %>
-      <div class="controls">
-        <%= f.check_box :record_scores, :class => "input-mini" %>
-      </div>
+      <label>
+        <%= f.check_box :record_scores, :class => "input-mini" %> Record scores
+      </label>
     </div>
 
     <div class="form-actions">
-      <%= f.submit :class => "btn btn-primary" %>
-      <%= link_to "Cancel", root_path, :class => "btn btn-warning" %>
+      <%= f.submit :class => "pure-button pure-button-primary" %>
+      <%= link_to "Cancel", root_path, :class => "pure-button button-warning" %>
     </div>
   </fieldset>
 <% end %>

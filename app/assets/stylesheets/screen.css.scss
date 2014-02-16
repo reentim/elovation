@@ -1,29 +1,267 @@
-.sidebar-nav {
-  padding: 9px 0;
+html, button, input, select, textarea,
+.pure-g [class *= "pure-u"],
+.pure-g-r [class *= "pure-u"]
+{
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
-.btn-sidebar {
-  margin-left: 1em;
+body
+{
+  color: #555;
 }
 
-section.action-buttons {
+p, td, ol, .help-inline
+{
+  a
+  {
+    color: #3b8bba;
+    text-decoration: none;
+
+    &:hover
+    {
+      text-decoration: underline;
+    }
+
+    &:visited
+    {
+      color: #265778;
+    }
+  }
+}
+
+h1
+{
+  display: inline-block;
+}
+
+.pure-button .fa
+{
+  padding-left: 3px;
+}
+
+h2
+{
+  font-weight: 300;
+  color: #888;
+}
+
+.results-table
+{
+  width: 100%;
+  border: none;
+
+  tr
+  {
+    border-bottom: 1px solid silver;
+  }
+
+  td
+  {
+    border: none;
+    vertical-align: top;
+    padding: 0;
+  }
+
+  .result-player-details
+  {
+    float: left;
+  }
+
+  .avatar, .doubles-avatars
+  {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    float: left;
+    width: 48px;
+    height: 48px;
+  }
+
+  .doubles-avatars
+  {
+    width: 48px;
+    height: 48px;
+    position: relative;
+    overflow: hidden;
+
+    img
+    {
+      float: none !important;
+
+      &:first-child
+      {
+        width: 63px;
+        height: 63px;
+        -webkit-clip-path: polygon(0 0, 0 58px, 80px 18px, 80px 0);
+        margin-top: -15px;
+        margin-left: -15px;
+      }
+
+      &:last-child
+      {
+        width: 58px;
+        height: 58px;
+        -webkit-clip-path: polygon(68px 80px, 80px -8px, 0 32px, 0 80px);
+        position: absolute;
+        top: 5px;
+        left: -5px;
+      }
+    }
+  }
+
+  .result-result
+  {
+    text-align: center;
+    padding: 0;
+    vertical-align: middle;
+    width: 1%;
+    white-space: nowrap;
+  }
+
+  .result-winner
+  {
+    width: 43.5%;
+    padding: 5px 5px 0 0;
+  }
+
+  .result-loser
+  {
+    padding: 5px 0 0 30px;
+  }
+}
+
+.defeated
+{
+  font-size: 25px;
+  font-weight: 300;
+}
+
+.result-time
+{
+  font-size: 12px;
+}
+
+.team-score
+{
+  font-size: 25px;
+  font-weight: 300;
+}
+
+.header .avatar
+{
+  margin-bottom: 1em;
+}
+
+.competition-losers
+{
+  .result-player-details
+  {
+    font-size: 13px;
+  }
+}
+
+.competition-last-place
+{
+  border-top: 1px solid gainsboro;
+  padding: 5px 0 5px 0;
+  margin-top: 5px;
+}
+
+.rating-table
+{
+  width: 100%;
+
+  td
+  {
+    padding: 8px;
+  }
+
+  thead
+  {
+    font-size: 13px;
+  }
+
+  .player
+  {
+    white-space: nowrap;
+
+    a
+    {
+      vertical-align: top;
+    }
+  }
+
+  .avatar
+  {
+    width: 32px;
+  }
+}
+
+.win
+{
+}
+
+.loss
+{
+  opacity: 0.5;
+  background: gainsboro;
+}
+
+.control-group
+{
+  margin-bottom: 1em;
+}
+
+.help-inline
+{
+  font-size: 13px;
+  color: #777;
+}
+
+.pure-controls
+{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.chzn-choices
+{
+  padding: 5px;
+}
+
+.search-field
+{
+  input
+  {
+    font-family: 'Source Sans Pro' !important;
+    font-size: 15px !important;
+    height: 25px !important;
+    width: 100% !important;
+  }
+}
+
+.result-form
+{
+  margin-top: 1em;
+
+  .result-selector
+  {
+    margin: 1em 0 1.5em;
+  }
+}
+
+.result-buttons
+{
   margin-top: 1em;
 }
 
-span.defeats {
-  margin-left: 1em;
-  margin-right: 1em;
+.avatar
+{
+  width: 128px;
 }
 
-span.inline-submit {
-  margin-left: 1em;
-}
-
-div.description {
-  margin-left: 5em;
-  margin-top: 1em;
-}
-
-.gray {
-  color: darkgray;
+.delete-button
+{
+  margin-right: 5px;
+  float: right;
 }
